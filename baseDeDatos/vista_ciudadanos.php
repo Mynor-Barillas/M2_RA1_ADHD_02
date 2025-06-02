@@ -22,7 +22,25 @@
         //require once
         require_once("conexion.php");
         //declarar la consulta sql
-        $sql= "SELECT * FROM ciudadanos";
+        $sql= "SELECT 
+                ciudadanos.dpi,
+                ciudadanos.apellido,
+                ciudadanos.nombre,
+                ciudadanos.direccion,
+                ciudadanos.tel_casa,
+                ciudadanos.tel_movil,
+                ciudadanos.email,
+                ciudadanos.fechanac,
+                nivelesacademicos.nombre AS Nivel_Academico,
+                municipios.nombre_municipio,
+                departamentos.nombre_depto,
+                regiones.nombre AS Region,
+                ciudadanos.contra
+             FROM 
+                ciudadanos INNER JOIN nivelesacademicos ON ciudadanos.cod_nivel_acad = nivelesacademicos.cod_nivel_acad
+                INNER JOIN municipios ON ciudadanos.cod_muni = municipios.cod_muni
+                INNER JOIN departamentos ON municipios.cod_depto = departamentos.cod_depto
+                INNER JOIN regiones ON departamentos.cod_region = regiones.cod_region;";
         //ejecutar la consulta sql
         $ejecutar= mysqli_query($conexion, $sql);
         //cerrar php y empezar la tabla en html
@@ -103,8 +121,10 @@
                         <th>telefono movil</th>
                         <th>email</th>
                         <th>Fecha de nacimiento</th>
-                        <th>Codigo nivel academico</th>
-                        <th>Codigo municipio</th>
+                        <th>Nivel academico</th>
+                        <th>Municipio</th>
+                        <th>Departamento</th>
+                        <th>Region</th>
                         <th>Contraseña</th>
                         <th>Accion</th>
                     </tr>
@@ -159,12 +179,22 @@
                         </td>
                         <td>
                             <?php
-                                echo $fila['cod_nivel_acad'];
+                                echo $fila['Nivel_Academico'];
                             ?>
                         </td>
                         <td>
                             <?php
-                                echo $fila['cod_muni'];
+                                echo $fila['nombre_municipio'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                                echo $fila['nombre_depto'];
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                                echo $fila['Region'];
                             ?>
                         </td>
                         <td>
