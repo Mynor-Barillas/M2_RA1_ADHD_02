@@ -2,10 +2,10 @@
 
     //definir variables
 
-    $servidor = "localhost";
-    $usuario = "root";
-    $password = ""; //usuario root no tiene contraseña
-    $basedatos = "fs2025_ciudadanos";
+    $servidor = "fdb1028.awardspace.net";
+    $usuario = "4596237_ciudadanos";
+    $password = "paginaxyz@3"; //usuario root no tiene contraseña, contraseña en awardspace
+    $basedatos = "4596237_ciudadanos";
 
 
     //conexion con mysqli
